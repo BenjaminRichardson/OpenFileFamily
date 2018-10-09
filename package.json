@@ -3,7 +3,10 @@
     "displayName": "open-file-family",
     "description": "Open all files with same prefix.",
     "version": "0.0.1",
-    "publisher": "bRichardson",
+    "publisher": "BCRSoftware",
+    "repository": {
+        "type": "git", "url": "https://github.com/BenjaminRichardson/OpenFileFamily"
+    },
     "engines": {
         "vscode": "^1.27.0"
     },
