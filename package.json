@@ -1,0 +1,55 @@
+{
+    "name": "open-file-family",
+    "displayName": "open-file-family",
+    "description": "Open all files with same prefix.",
+    "version": "0.0.1",
+    "publisher": "bRichardson",
+    "engines": {
+        "vscode": "^1.27.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:extension.openFileFamily"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "commands": [{
+            "command": "extension.openFileFamily",
+            "title": "Open File Family"
+        }],
+        "keybindings":[{
+            "command": "extension.openFileFamily",
+            "key": "ctrl+k ctrl+k",
+            "mac": "cmd+k cmd+k"
+        }],
+        "configuration":{
+            "type": "object",
+            "title": "Open File Family Configuration",
+            "properties": {
+                "openFileFamily.families": {
+                    "type":"array",
+                    "description": "Each array is a single file family. If divided up into seperate subarrays, each subarray will be given it's own tab-group. Any file extension can only be used once. Example: [\"*.family1\"],[[\"*.family2.LeftPanel1\", \"*.family2.LeftPanel2\"],[\"*.family2.RightPanel1\", \"*.family2.RightPanel2\"]]",
+                    "default": [
+                        [[".ts", ".html"], [".spec.ts"]]
+                    ]
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.21",
+        "tslint": "^5.8.0",
+        "@types/node": "^8.10.25",
+        "@types/mocha": "^2.2.42"
+    }
+}
