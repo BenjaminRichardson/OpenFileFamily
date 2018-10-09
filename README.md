@@ -1,65 +1,66 @@
-# open-file-family README
+# Open File Family
 
-This is the README for your extension "open-file-family". After writing up a brief description, we recommend including the following sections.
+Opens all files with related in the specified editor pane. Especially useful for opening tests or spec files.
+
+I created this because when working in angular I sometimes wanted to open the *.spec.ts, *.ts, *.scss, and *.html all at once, from any file. I also prefer having the spec file alongside the others. 
+
+With this enabled with only the *.ts file open I am able to open all the related files with a shorcut.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+By default the extension is triggered by `ctrl+k` + `ctrl+k` on Linux/Windws (`cmd+k` + `cmd+k` on macOS).
 
-For example if there is an image subfolder under your extension project workspace:
+Allows for many different file families, but selects based on the most specific option e.g. '-service.spec.ts' will be the selected family before '.ts'.
 
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+This extension does not create new files, just opens existing ones.
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
 This extension contributes the following settings:
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+* `openFileFamily.families`: List all the family of suffixes you want to open. Any member of the family is able to open its relatives.
+   
+    **Example 1:**
+     
+        * The configured family list contains ["a", "b", "c"].
+
+        * The editor is open to "example.a" in the open editor pane.
+        
+        * The extension is triggered.
+        
+        * "example.b" and "example.c" are opened in the same editor pane as "example.a".
+
+        
+    **Example 2:**
+
+        * The configured family list contains [["x"], ["y", "z"]].
+
+        * The active editor is open to "test.x" in the only pane.
+        
+        * The extension is triggered.
+        
+        * "test.y" and "test.z" will be opened in a new editor pane to the right of "test.x".
+
+    There is no limit to the number of families, but there may be performance costs on bootup if there are many families or large families.
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+Large number of edit pane groups will likely not work as expected. I know windows of 2 or 3 work well, but anything beyond that is untested. Don't expect to get 8 different editor tab-sets to open.
+
+Additionally starting the opening process from a tab-group other than the left-most one is still buggy.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
 
-### 1.0.0
+### 0.0.1
 
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+Initial release for testing with a real project.
 
 -----------------------------------------------------------------------------------------------------------
 
-## Working with Markdown
+## Thanks
 
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
+Thanks to https://github.com/thekarel and all who contributed to https://github.com/thekarel/vscode-open-spec-file. **Open File Family** is grown from **Open Spec File** and would not exist without it.
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
 
 **Enjoy!**
