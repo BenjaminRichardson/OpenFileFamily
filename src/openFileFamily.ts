@@ -16,11 +16,11 @@ export async function openFileFamily(fileMap: Map<string, FileFamily>, textEdito
 
     const keyColumn = fileMap.get(key)!.columnIndex;
     const filePaths = getFamilyPaths(currentFile, key, keyColumn, fileMap.get(key)!); // key would be null if filemap does not have entry
-    try{
-        for(const fp of filePaths ){
+    for(const fp of filePaths ){
+        try{
             await openFile(fp.path, (textEditor.viewColumn || 0) + fp.relativeColumn);
+        }catch(err){
+            displayError('Error opening file at ' + fp.path, err);
         }
-    }catch(err){
-        displayError('Error opening files', err);
     }
 }

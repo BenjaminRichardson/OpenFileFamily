@@ -1,8 +1,12 @@
-import * as vscode from 'vscode';
+import {
+    workspace as vscodeWorkspace, 
+    window as vscodeWindow, 
+    TextDocument,
+} from 'vscode';
 
-export function openFile(filePath: string, column: number){
-    return vscode.workspace.openTextDocument(filePath)
-        .then((doc) => {
-            return vscode.window.showTextDocument(doc, {preview: false, viewColumn: column+1});
+export async function openFile(filePath: string, column: number){
+    return vscodeWorkspace.openTextDocument(filePath)
+        .then((doc: TextDocument) => {
+            return vscodeWindow.showTextDocument(doc, {preview: false, viewColumn: column+1});
         });
 }
