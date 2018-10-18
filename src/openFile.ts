@@ -7,6 +7,6 @@ import {
 export async function openFile(filePath: string, column: number){
     return vscodeWorkspace.openTextDocument(filePath)
         .then((doc: TextDocument) => {
-            return vscodeWindow.showTextDocument(doc, {preview: false, viewColumn: column+1});
+            return vscodeWindow.showTextDocument(doc, {preview: false, viewColumn: column+1, preserveFocus:true});
         });
 }
